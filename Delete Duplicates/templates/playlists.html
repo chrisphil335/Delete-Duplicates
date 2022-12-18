@@ -1,0 +1,18 @@
+{% extends "template.html" %}
+
+{% block content %}
+
+<h1>PLAYLISTS</h1>
+
+{% for playlist in current_users_playlists %}
+<div>
+    <a 
+        href="{{ url_for('playlist', playlist_id = playlist.id) }}"
+        style="text-decoration: none; color: white;"
+    >
+        {{ playlist.name }}
+    </a>
+</div>
+{% endfor %}
+
+{% endblock %}

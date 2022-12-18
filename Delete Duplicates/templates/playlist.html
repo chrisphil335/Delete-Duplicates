@@ -1,0 +1,36 @@
+{% extends "template.html" %}
+
+{% block content %}
+
+<h1>{{ playlist.name }}</h1>
+
+<h1>TRACKS</h1>
+
+{% set seen_tracks, duplicate_tracks = [], [] %}
+
+{% for item in playlist_items %}
+
+    {% if {"uri": item.track.uri} in seen_tracks %}
+        {% set duplicate_tracks = duplicate_tracks.append({"uri": item.track.uri}) %}
+    {% else %}
+        {% set seen_tracks = seen_tracks.append({"uri": item.track.uri}) %}
+    {% endif %}
+
+    <div>
+        {{ item.track.name }}
+    </div>
+{% endfor %}
+
+<h1>DUPLICATE TRACKS</h1>
+
+{% set duplicate_tracks = {"tracks": duplicate_tracks} %}
+
+<div>
+    {{ duplicate_tracks }}
+</div>
+
+<div>
+    <a href="{{ url_for('delete_duplicate_tracks', playlist_id = playlist.id) }}">Delete Duplicate Tracks</a>
+</div>
+
+{% endblock %}
