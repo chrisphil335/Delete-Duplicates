@@ -101,7 +101,7 @@ def delete_duplicate_tracks(playlist_id):
     seen_tracks, duplicate_tracks = [], []
     for item in get_playlist_items(playlist_id):
         if item["track"]["uri"] in seen_tracks:
-            duplicate_tracks.append({"uri": item["track"]["uri"]})
+            duplicate_tracks.append({"uri": item["track"]["uri"], "positions": [i]})
         else:
             seen_tracks.append(item["track"]["uri"])
     remove_playlist_items(playlist_id, json.dumps({"tracks": duplicate_tracks}))
