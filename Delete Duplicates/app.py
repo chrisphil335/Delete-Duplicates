@@ -99,7 +99,7 @@ def playlist(playlist_id):
 @app.route("/delete_duplicate_tracks/<playlist_id>")
 def delete_duplicate_tracks(playlist_id):
     seen_tracks, duplicate_tracks = [], []
-    for item in get_playlist_items(playlist_id):
+    for i, item in enumerate(get_playlist_items(playlist_id)):
         if item["track"]["uri"] in seen_tracks:
             duplicate_tracks.append({"uri": item["track"]["uri"], "positions": [i]})
         else:
