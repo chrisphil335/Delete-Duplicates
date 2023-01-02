@@ -2,7 +2,17 @@
 
 {% block content %}
 
+<img src="{{ playlist.images.0.url }}" width="200" height="200">
+
+{% if playlist.public %}
+    <h2>PUBLIC PLAYLIST</h2>
+{% else %}
+    <h2>PRIVATE PLAYLISt</h2>
+{% endif %}
+
 <h1>{{ playlist.name }}</h1>
+
+<h3>{{ current_users_profile.display_name }}</h3>
 
 <h1>TRACKS</h1>
 

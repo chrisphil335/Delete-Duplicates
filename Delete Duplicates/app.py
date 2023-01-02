@@ -87,10 +87,12 @@ def playlists():
 
 @app.route("/playlist/<playlist_id>")
 def playlist(playlist_id):
+    current_users_profile = get_current_users_profile()
     playlist = get_playlist(playlist_id)
     playlist_items = get_playlist_items(playlist_id)
     return render_template(
         "playlist.html",
+        current_users_profile = current_users_profile,
         playlist = playlist,
         playlist_items = playlist_items,
     )
